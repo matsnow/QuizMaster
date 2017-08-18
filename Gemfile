@@ -28,6 +28,8 @@ gem 'turbolinks', '~> 5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'public_suffix', '~> 2.0.5'
+gem 'webpacker', github: "rails/webpacker"
+gem 'foreman'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

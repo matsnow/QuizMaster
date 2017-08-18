@@ -4,11 +4,13 @@
     <title>QuizMaster</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'manifest' %>
+    <%= javascript_pack_tag 'commons' %>
   </head>
 
   <body>
     <%= yield %>
+    <%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
