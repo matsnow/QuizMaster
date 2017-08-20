@@ -21,10 +21,13 @@ export default class QuestionForm extends React.Component {
 
   render() {
     return (
-      <RichTextEditor
-        value ={this.state.value}
-        onChange={this.onChange.bind(this)}
-      />
+      <div>
+        <h3>Question</h3>
+        <RichTextEditor
+          value ={this.state.value}
+          onChange={this.onChange.bind(this)}
+        />
+      </div>
     )
   }
 }
