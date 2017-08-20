@@ -3,7 +3,6 @@ class Api::V1::QuizzesController < ApplicationController
 
     def show
         quizzes = Quiz.all
-      #  render json: quizzes
         render json: {result: quizzes}
     end
 
@@ -28,6 +27,21 @@ class Api::V1::QuizzesController < ApplicationController
     def destroy
         @quiz = Quiz.find(params[:id])
         if @quiz.destroy
+            render json: {result: true}
+        else
+            render json: {result: false}
+        end
+    end
+
+    def challenges
+        quizzes = Quiz.find(Quiz.pluck(:id).shuffle[0..9])
+        render json: {result: quizzes}
+    end
+
+    def is_correct
+        @quiz = Quiz.find(params[:question_id])
+        normalizeAnswer = @quiz.normalizeString(params[:answer])
+        if normalizeAnswer === @quiz[:answer]
             render json: {result: true}
         else
             render json: {result: false}
