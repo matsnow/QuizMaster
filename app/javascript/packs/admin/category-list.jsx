@@ -19,6 +19,7 @@ export default class CategoryList extends React.Component {
         value={this.state.value}
         onChange={this.handleChange.bind(this)}
         floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: '#000000' }}
+        value={this.props.category}
       >
         <MenuItem value={1} primaryText="Mathmatics" />
         <MenuItem value={2} primaryText="Science" />

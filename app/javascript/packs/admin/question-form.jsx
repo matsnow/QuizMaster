@@ -5,13 +5,14 @@ import RichTextEditor from 'react-rte';
 export default class QuestionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: RichTextEditor.createEmptyValue()
-    }
+    const defaultValue = this.props.rawQuestion || RichTextEditor.createEmptyValue();
+    this.state = { value: defaultValue }
   }
 
   onChange(value) {
     this.setState({value});
+
+    // ActionでStoreの両方を更新する。
     if( this.props.onChange) {
       this.props.onChange(
         value.toString('html')
