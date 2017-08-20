@@ -7,8 +7,12 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json } do
     namespace :v1 do
-       resource :quiz, :except => [:new, :edit]
+      resource :quiz, :except => [:new, :edit] do
+        member do
+          get  'challenges'
+          post 'is_correct'
+        end
+      end
     end
   end
-
 end
