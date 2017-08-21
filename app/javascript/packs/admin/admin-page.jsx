@@ -21,7 +21,7 @@ export default class AdminPage extends Reflux.Component {
     return (
       <div>
         <GlobalHeader index={this.props.index}/>
-        <div style={{display: 'flex'}}>
+        <div className='admin-page'>
           <EditQuizform editing={this.state.editingQuiz}/>
           <QuizCollection quizList={this.state.quizList}/>
         </div>

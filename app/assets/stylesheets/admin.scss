@@ -6,3 +6,47 @@
   min-height: 200px;
   max-height: 50vh;
 }
+
+.admin-page {
+  display: flex;
+}
+
+.edit-quiz-form {
+  flex: 2;
+  margin: 2%;
+  border-radius: 10px;
+
+  &__header {
+    border-bottom : 1px solid #e0e0e0;
+  }
+}
+
+.quiz-collection {
+  flex :1;
+  padding: 2%;
+
+  &__list {
+    margin-top: 10px;
+  }
+}
+
+.quiz-view {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+
+  &__question {
+    margin-right: 10px;
+    flex: 2;
+  }
+
+  &__answer {
+    margin-right: 30px;
+    flex: 1;
+  }
+
+  &__button {
+    flex: 1;
+    margin-right: 10px;
+  }
+}

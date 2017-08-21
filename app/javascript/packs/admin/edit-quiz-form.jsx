@@ -16,7 +16,8 @@ export default class EditQuizform extends React.Component {
   }
 
   isExist() {
-    return this.props.editing.id !== null;
+    console.log(`ID = ${this.props.editing.id}`);
+    return this.props.editing.id !== undefined;
   }
 
   create() {
@@ -28,33 +29,29 @@ export default class EditQuizform extends React.Component {
   }
 
   render() {
-    const cardStyle   = { flex: '2', margin: '2%', borderRadius: '10px' };
-    const buttonStyle = { margin: '12px' };
-    const headerStyle = { borderBottom : '1px solid #e0e0e0' };
-    const titleStyle  = { fontSize: '20px' };
+    const titleStyle = { fontSize: '20px' };
+    const isEdit = this.isExist();
+
     return (
-      <div style={cardStyle}>
+      <div className='edit-quiz-form'>
         <Card>
           <CardHeader
-            title={(this.isExist()? 'Edit' : 'Add') + 'Quiz'}
+            title={isEdit? `Edit Quiz No.${this.props.editing.id}` : 'Add Quiz'}
             actAsExpander={true}
             showExpandableButton={false}
-            style={headerStyle}
+            className='edit-quiz-form__header'
             titleStyle={titleStyle}
           />
           <CardText expandable={false}>
-            <QuestionForm
-              question={this.props.editing.question}
-              rawQuestion={this.props.editing.rawQuestion}
-            />
+            <QuestionForm question={this.props.editing.question} />
             <AnswerForm   answer={this.props.editing.answer}/>
             <CategoryList category={this.props.editing.category}/>
           </CardText>
           <CardActions>
             <RaisedButton
-              label={this.isExist()? 'Edit' : 'Add'}
+              label={isEdit? 'Edit' : 'Add'}
               primary={true}
-              onClick={this.isExist()? this.update : this.create}
+              onClick={isEdit? this.update : this.create}
             />
           </CardActions>
         </Card>

@@ -21,12 +21,11 @@ export default class QuizView extends React.Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', marginBottom: '15px', alignItems: 'center' }}>
-        <div style={{marginRight: '10px'}}>Q. {this.props.question}</div>
-        <div style={{marginRight: '30px'}}>A. {this.props.answer}</div>
-        <FlatButton label="Edit" onClick={this.editQuiz}
-          style={{ borderRadius: '5px', marginRight: '10px' }} />
-        <FlatButton label="Delete" onClick={this.deleteQuiz} secondary={true} buttonStyle={{ borderRadius: '5px' }}/>
+      <div className='quiz-view'>
+        <div className='quiz-view__question' dangerouslySetInnerHTML={{__html: 'Q. ' + this.props.question}}></div>
+        <div className='quiz-view__answer'>A. {this.props.answer}</div>
+        <FlatButton label="Edit" onClick={this.editQuiz} className='quiz-view__button' />
+        <FlatButton label="Delete" onClick={this.deleteQuiz} secondary={true} buttonStyle={{ borderRadius: '5px' }} className='quiz-view__button'/>
       </div>
     );
   }

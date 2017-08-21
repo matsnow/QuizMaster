@@ -16,7 +16,7 @@ export default class QuizCollection extends React.Component {
 
   render() {
     return (
-      <div style={{flex :'1', padding: '2%'}}>
+      <div className='quiz-collection'>
         <RaisedButton
           label="Add new question"
           backgroundColor="#40CA40"
@@ -24,12 +24,10 @@ export default class QuizCollection extends React.Component {
           buttonStyle={{ borderRadius: '5px' }}
           onClick={this.createNewQuiz}
         />
-        <div style={{marginTop: '10px'}}>
-        {
-          this.props.quizList.map((quiz, i) => {
-            return <QuizView key={i} {...quiz}/>
-          })
-        }
+        <div className='quiz-collection__list'>
+        {this.props.quizList.map((quiz, i) => {
+          return <QuizView key={i} {...quiz}/>
+        })}
         </div>
       </div>
     );

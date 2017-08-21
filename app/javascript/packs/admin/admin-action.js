@@ -9,10 +9,11 @@ export const AdminActions = Reflux.createActions([
     'delete': {children: ['completed', 'failed']},
     'update': {children: ['completed', 'failed']}
   },
-  'newQuiz', 'editQuiz'
+  'newQuiz', 'editQuiz', 'editQuestion', 'editAnswer', 'editCategory'
 ]);
 
 const url = '/api/v1/quiz';
+const token = document.getElementsByName('csrf-token')[0].content;
 
 // 初期表示時に使用
 AdminActions.getall.listen(() => {
@@ -26,19 +27,22 @@ AdminActions.getall.listen(() => {
 
 AdminActions.create.listen((data) => {
   return request.post(url).send(data)
-    .then((res) => { AdminActions.create.completed(res, data) })
+    .set('X-CSRF-Token', token)
+    .then((res) => { AdminActions.create.completed(res.body, data) })
     .catch(AdminActions.create.failed);
 });
 
 AdminActions.update.listen((data) => {
   return request.put(url).send(data)
-    .then((res) => { AdminActions.update.completed(res, data) })
+    .set('X-CSRF-Token', token)
+    .then((res) => { AdminActions.update.completed(res.body, data) })
     .catch(AdminActions.update.failed);
 });
 
 AdminActions.delete.listen((id) => {
   return request.delete(url).send({id: id})
-    .then((res) => { AdminActions.delete.completed(res, id) })
+    .set('X-CSRF-Token', token)
+    .then((res) => { AdminActions.delete.completed(res.body, id) })
     .catch(AdminActions.delete.failed);
 });
 
