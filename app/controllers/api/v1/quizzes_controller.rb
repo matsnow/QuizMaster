@@ -34,7 +34,7 @@ class Api::V1::QuizzesController < ApplicationController
     end
 
     def challenges
-        quizzes = Quiz.find(Quiz.pluck(:id).shuffle[0..9])
+        quizzes = Quiz.find(Quiz.pluck(:id).shuffle[0..9]).pluck(:id, :question, :category)
         render json: {result: quizzes}
     end
 
@@ -46,6 +46,8 @@ class Api::V1::QuizzesController < ApplicationController
         else
             render json: {result: false}
         end
+        rescue
+            render json: {result: false}
     end
 
   private
