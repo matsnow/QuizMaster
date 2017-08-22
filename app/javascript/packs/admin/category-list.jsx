@@ -1,22 +1,25 @@
+import Reflux      from 'reflux';
 import React       from 'react'
 import SelectField from 'material-ui/SelectField';
 import MenuItem    from 'material-ui/MenuItem';
+import AdminAction from './admin-action';
+import AdminStore  from './admin-store';
 
-export default class CategoryList extends React.Component {
+export default class CategoryList extends Reflux.Component {
   constructor(props) {
     super(props);
-    this.state = { value: 1 };
+    this.store = AdminStore;
   }
 
   handleChange(event, index, value) {
-    this.setState({value});
+    AdminAction.editCategory(value);
   }
 
   render() {
     return (
       <SelectField
         floatingLabelText="Category"
-        value={this.state.value}
+        value={this.state.editingQuiz.category}
         onChange={this.handleChange.bind(this)}
         floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: '#000000' }}
       >

@@ -1,22 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import Reflux         from 'reflux';
+import React          from 'react'
+import PropTypes      from 'prop-types'
 import RichTextEditor from 'react-rte';
+import AdminAction    from './admin-action';
+import AdminStore     from './admin-store';
 
-export default class QuestionForm extends React.Component {
+export default class QuestionForm extends Reflux.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: RichTextEditor.createEmptyValue()
-    }
+    this.store = AdminStore;
   }
 
   onChange(value) {
-    this.setState({value});
-    if( this.props.onChange) {
-      this.props.onChange(
-        value.toString('html')
-      )
-    }
+    AdminAction.editQuestion(value);
   }
 
   render() {
@@ -24,7 +20,7 @@ export default class QuestionForm extends React.Component {
       <div>
         <h3>Question</h3>
         <RichTextEditor
-          value ={this.state.value}
+          value={this.state.editorString}
           onChange={this.onChange.bind(this)}
         />
       </div>

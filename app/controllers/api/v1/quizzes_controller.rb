@@ -9,9 +9,9 @@ class Api::V1::QuizzesController < ApplicationController
     def create
         @quiz = Quiz.new(quiz_params)
         if @quiz.save
-            render json: {result: true}
+            render json: {id: @quiz[:id]}
         else
-            render json: {result: false}
+            render json: {result: false}, status: 500
         end
     end
 
@@ -20,7 +20,7 @@ class Api::V1::QuizzesController < ApplicationController
         if @quiz.update(quiz_params)
             render json: {result: true}
         else
-            render json: {result: false}
+            render json: {result: false}, status: 500
         end
     end
 
@@ -29,12 +29,12 @@ class Api::V1::QuizzesController < ApplicationController
         if @quiz.destroy
             render json: {result: true}
         else
-            render json: {result: false}
+            render json: {result: false}, status: 500
         end
     end
 
     def challenges
-        quizzes = Quiz.find(Quiz.pluck(:id).shuffle[0..9])
+        quizzes = Quiz.find(Quiz.pluck(:id).shuffle[0..9]).pluck(:id, :question, :category)
         render json: {result: quizzes}
     end
 
@@ -46,6 +46,8 @@ class Api::V1::QuizzesController < ApplicationController
         else
             render json: {result: false}
         end
+        rescue
+            render json: {result: false}
     end
 
   private

@@ -1,3 +1,64 @@
 // Place all the styles related to the question controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.question-page {
+  display: flex;
+  height: 70vh;
+}
+
+.answer-area {
+  &__card {
+    flex: 2;
+    margin: 2;
+    box-shadow: rgba(0, 0, 0, 0.12) 2px 2px 10px 10px;
+  }
+  &__button {
+    margin: 12px;
+  }
+  &__header {
+    border-bottom: 1px solid #e0e0e0;
+  }
+}
+
+.quiz-list {
+  flex: 1;
+  padding-left: 2%;
+  padding-top: 3%;
+  margin-left: 3%;
+  border-left: 1px solid #e0e0e0;
+
+  &__label {
+    font-size: 25px;
+  }
+
+  &__item {
+    & > span {
+      padding-left: 10px;
+    }
+
+    &--unanswered {
+      color: #b2b2b2;
+    }
+    &--correct {
+      color: #57ca59;
+    }
+    &--incorrect {
+      color: #ff8080;
+    }
+  }
+}
+
+.result-dialog > div {
+  width: 50%;
+  margin-left: 25%;
+}
+
+.answer-snack {
+  &--correct > div {
+    background-color: #57ca59 !important;
+  }
+  &--incorrect > div {
+    background-color: #ff8080 !important;
+  }
+}
