@@ -10,7 +10,6 @@ export const QuizActions = Reflux.createActions([
 ]);
 
 const url = '/api/v1/quiz';
-const token = document.getElementsByName('csrf-token')[0].content;
 
 QuizActions.challenges.listen(() => {
   return request.get(url + '/challenges')
@@ -22,6 +21,7 @@ QuizActions.challenges.listen(() => {
 });
 
 QuizActions.isCorrect.listen((data) => {
+  const token = document.getElementsByName('csrf-token')[0].content;
   return request.post(url + '/is_correct').send(data)
     .set('X-CSRF-Token', token)
     .then((res) => { QuizActions.isCorrect.completed(res.body, data) })
