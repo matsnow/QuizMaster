@@ -7,30 +7,34 @@ class Api::V1::QuizzesController < ApplicationController
     end
 
     def create
-        @quiz = Quiz.new(quiz_params)
-        if @quiz.save
-            render json: {id: @quiz[:id]}
+        quiz = Quiz.new(quiz_params)
+        if quiz.save
+            render json: {id: quiz[:id]}
         else
             render json: {result: false}, status: 500
         end
     end
 
     def update
-        @quiz = Quiz.find(params[:id])
-        if @quiz.update(quiz_params)
+        quiz = Quiz.find(params[:id])
+        if quiz.update(quiz_params)
             render json: {result: true}
         else
             render json: {result: false}, status: 500
         end
+      rescue
+          render json: {result: false}, status: 500
     end
 
     def destroy
-        @quiz = Quiz.find(params[:id])
-        if @quiz.destroy
+        quiz = Quiz.find(params[:id])
+        if quiz.destroy
             render json: {result: true}
         else
             render json: {result: false}, status: 500
         end
+      rescue
+          render json: {result: false}, status: 500
     end
 
     def challenges
@@ -39,15 +43,15 @@ class Api::V1::QuizzesController < ApplicationController
     end
 
     def is_correct
-        @quiz = Quiz.find(params[:question_id])
-        normalizeAnswer = @quiz.normalizeString(params[:answer])
-        if normalizeAnswer === @quiz[:answer]
+        quiz = Quiz.find(params[:question_id])
+        normalizeAnswer = quiz.normalizeString(params[:answer])
+        if normalizeAnswer === quiz[:answer]
             render json: {result: true}
         else
             render json: {result: false}
         end
-        rescue
-            render json: {result: false}
+      rescue
+          render json: {result: false}
     end
 
   private
