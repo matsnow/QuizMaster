@@ -1,6 +1,14 @@
 {
   "name": "quiz-master",
   "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "roots": ["app/javascript/packs"],
+    "moduleDirectories": ["node_modules"],
+    "moduleFileExtensions": ["js","jsx"]
+  },
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "7.x",
@@ -40,6 +48,9 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "clean-webpack-plugin": "^0.1.16",
+    "jest": "^20.0.4",
     "webpack-dev-server": "^2.7.1"
   }
 }

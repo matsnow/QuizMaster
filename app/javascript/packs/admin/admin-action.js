@@ -13,7 +13,6 @@ export const AdminActions = Reflux.createActions([
 ]);
 
 const url = '/api/v1/quiz';
-const token = document.getElementsByName('csrf-token')[0].content;
 
 // 初期表示時に使用
 AdminActions.getall.listen(() => {
@@ -26,6 +25,7 @@ AdminActions.getall.listen(() => {
 });
 
 AdminActions.create.listen((data) => {
+  const token = AdminActions.getToken();
   return request.post(url).send(data)
     .set('X-CSRF-Token', token)
     .then((res) => { AdminActions.create.completed(res.body, data) })
@@ -33,6 +33,7 @@ AdminActions.create.listen((data) => {
 });
 
 AdminActions.update.listen((data) => {
+  const token = AdminActions.getToken();
   return request.put(url).send(data)
     .set('X-CSRF-Token', token)
     .then((res) => { AdminActions.update.completed(res.body, data) })
@@ -40,10 +41,16 @@ AdminActions.update.listen((data) => {
 });
 
 AdminActions.delete.listen((id) => {
+  const token = AdminActions.getToken();
   return request.delete(url).send({id: id})
     .set('X-CSRF-Token', token)
     .then((res) => { AdminActions.delete.completed(res.body, id) })
     .catch(AdminActions.delete.failed);
 });
+
+AdminActions.getToken = () => {
+  return document.getElementsByName('csrf-token')[0].content;
+};
+
 
 export default AdminActions;

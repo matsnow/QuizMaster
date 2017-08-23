@@ -1,12 +1,77 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   question: MyText
   answer: MyText
   category: 1
   answer_type: 1
 
 two:
+  id: 2
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+three:
+  id: 3
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+four:
+  id: 4
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+five:
+  id: 5
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+six:
+  id: 6
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+seven:
+  id: 7
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+eight:
+  id: 8
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+nine:
+  id: 9
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+ten:
+  id: 10
+  question: MyText
+  answer: MyText
+  category: 1
+  answer_type: 1
+
+eleven:
+  id: 11
   question: MyText
   answer: MyText
   category: 1

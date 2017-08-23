@@ -48,19 +48,20 @@ export default class QuizStore extends Reflux.Store {
 
     const showDialog = (this.state.currentNo + 1) === this.state.challengeList.length;
 
-    const snackState = {};
-    if(showDialog === false) {
-      snackState.showSnack = true;
-      snackState.isCorrect = res.result;
-    }
-
-    this.setState({
+    const newState = {
       challengeList: this.state.challengeList,
       currentNo: this.state.currentNo + 1,
       correctNum: correctNum,
       showDialog: showDialog,
-      snackState: snackState
-    });
+    };
+
+    if(showDialog === false) {
+      newState.snackState = {
+        showSnack: true,
+        isCorrect: res.result
+      };
+    }
+    this.setState(newState);
   }
 
   onEditingAnswer(value) {

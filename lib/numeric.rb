@@ -7,6 +7,8 @@ class Numeric
 
   def to_int_en
     case self
+    when 0
+      "zero"
     when 1
       "one"
     when 2
@@ -121,6 +123,7 @@ class Numeric
     end
 
     floatPart = floatPart.gsub(/\./, ' point');
+    floatPart = floatPart.gsub(/0/,  ' zero');
     floatPart = floatPart.gsub(/1/,  ' one');
     floatPart = floatPart.gsub(/2/,  ' two');
     floatPart = floatPart.gsub(/3/,  ' three');
