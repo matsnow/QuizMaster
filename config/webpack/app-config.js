@@ -1,6 +1,8 @@
 const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   plugins: [
+    new CleanWebpackPlugin(['public/packs/*'], {root: __dirname + '/../..', verbose: true}),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'commons',
       minChunks: (module) => {

@@ -40,6 +40,7 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.16",
     "webpack-dev-server": "^2.7.1"
   }
 }
